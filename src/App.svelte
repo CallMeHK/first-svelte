@@ -1,6 +1,7 @@
 <script>
   import Counter from "./comps/Counter.svelte";
   import MagicApi from "./comps/MagicApi.svelte";
+  import Todos from "./comps/Todos.svelte";
   import setUpRouter from "./router.js";
   // Route function to pass to setuprouter
   let page = "home";
@@ -16,6 +17,9 @@
     },
     magic: function() {
       return updatePage("magic");
+    },
+    todos: function() {
+      return updatePage("todos");
     }
   };
 
@@ -42,6 +46,9 @@
       <a href="./#/counter">COUNTER</a>
     </li>
     <li>
+      <a href="./#/todos">TODOS</a>
+    </li>
+    <li>
       <a href="./#/magic">MAGIC API</a>
     </li>
   </ul>
@@ -51,6 +58,8 @@
       <h3>Home</h3>
     {:else if page === 'counter'}
       <Counter />
+    {:else if page === 'todos'}
+      <Todos />
     {:else if page === 'magic'}
       <MagicApi />
     {:else}
