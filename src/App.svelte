@@ -2,6 +2,7 @@
   import Counter from "./comps/Counter.svelte";
   import MagicApi from "./comps/MagicApi.svelte";
   import Todos from "./comps/Todos.svelte";
+  import MagicSearch from "./comps/MagicSearch.svelte";
   import setUpRouter from "./router.js";
   // Route function to pass to setuprouter
   let page = "home";
@@ -17,6 +18,9 @@
     },
     magic: function() {
       return updatePage("magic");
+    },
+    magicSearch: function() {
+      return updatePage("magicSearch");
     },
     todos: function() {
       return updatePage("todos");
@@ -51,6 +55,9 @@
     <li>
       <a href="./#/magic">MAGIC API</a>
     </li>
+    <li>
+      <a href="./#/magicSearch">MAGIC SEARCH</a>
+    </li>
   </ul>
   <div>-----------------------------------</div>
   <div>
@@ -62,6 +69,8 @@
       <Todos />
     {:else if page === 'magic'}
       <MagicApi />
+    {:else if page === 'magicSearch'}
+      <MagicSearch />
     {:else}
       <h3>Error</h3>
     {/if}

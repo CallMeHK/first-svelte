@@ -1,6 +1,6 @@
 <script>
   let promise = getCard();
-
+  let loading = true;
   async function getCard() {
     const res = await fetch(`https://api.scryfall.com/cards/random`);
     const card = await res.json();
@@ -13,6 +13,7 @@
   }
 
   function onClick() {
+    loading = true;
     promise = getCard();
   }
 </script>
@@ -25,7 +26,16 @@
     <div>
       <button on:click={onClick}>Fetch again</button>
     </div>
-    <img src={card.image_uris.small} alt="card" />
+    {#if loading}
+      <p>Loading image...</p>
+    {/if}
+    <img
+      src={card.image_uris.small}
+      alt="card"
+      style={loading && 'display:none'}
+      on:load={() => {
+        loading = false;
+      }} />
   {:catch error}
     <p style="color: red">{error.message}</p>
   {/await}
