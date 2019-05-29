@@ -1,12 +1,17 @@
 <script>
   let search = "";
   let loading = false;
+  let timeout = null
   let results = {};
 
   function getCards() {
-    if (!loading && search !== "") {
+    console.log(search)
+    if(!!timeout){
+      clearTimeout(timeout)
+    }
+    if (search !== "") {
       loading = true;
-      setTimeout(cardQuery, 1500);
+      timeout = setTimeout(cardQuery, 1500);
     }
   }
 
@@ -18,7 +23,8 @@
     )
       .then(res => res.json())
       .then(res => {
-        res = results;
+        console.log(res)
+        results = res;
         loading = false;
       });
   }
